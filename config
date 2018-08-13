@@ -156,7 +156,9 @@ bar {
         tray_output primary
 }
 
-exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
+# inverted scrolling, scroll speed, no edge scroll
+exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113 VertEdgeScroll=0
+# background
 exec nitrogen --restore
 
 # start audio and network stuff
@@ -184,6 +186,12 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # puush
+bindsym Ctrl+Shift+3 exec --no-startup-id puush -c desktop
 bindsym Ctrl+Shift+4 exec --no-startup-id puush -c area
 
 exec --no-startup-id i3-battery-popup
+exec setxkbmap -layout gb -option ctrl:nocaps # Caps Lock is Control on a GB keyboard
+bindsym $mod+n exec setxkbmap -layout gb -option ctrl:nocaps # Caps Lock is Control on a GB keyboard
+
+
+exec xinput --set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Noise Cancellation" 20 20
